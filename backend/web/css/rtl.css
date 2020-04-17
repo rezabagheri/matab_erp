@@ -1,0 +1,15 @@
+html,
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+.ml-auto,
+.mx-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+.navbar-nav {
+    padding-right: 0;
+}
