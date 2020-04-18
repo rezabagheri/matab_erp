@@ -32,7 +32,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'last_name',
             'visitdayes',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'update' =>  function($url,$model) {
+                        return Html::a('<i class="fa fa-edit"></i>', $url, [
+                            'title' => Yii::t('app', 'update')
+                        ]);
+                    },
+                    'view' =>  function($url,$model) {
+                        return Html::a('<i class="fa fa-eye"></i>', $url, [
+                            'title' => Yii::t('app', 'view')
+                        ]);
+                    },
+                    'delete' => function($url,$model) {
+                        return Html::a('<i class="fa fa-trash"></i>', $url, [
+                            'title' => Yii::t('app', 'delete')
+                        ]);
+                    }
+                 ]
+            ],
         ],
     ]); ?>
 
