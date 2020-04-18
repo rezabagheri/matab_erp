@@ -43,10 +43,10 @@ class Doctors extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'did' => Yii::t('paradise', 'Did'),
-            'first_name' => Yii::t('paradise', 'First Name'),
-            'last_name' => Yii::t('paradise', 'Last Name'),
-            'visitdayes' => Yii::t('paradise', 'Visitdayes'),
+            'did' => 'Did',
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'visitdayes' => 'Visitdayes',
         ];
     }
 
