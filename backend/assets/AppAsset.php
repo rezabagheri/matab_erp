@@ -20,8 +20,9 @@ class AppAsset extends AssetBundle
         'css/jvectormap/jquery-jvectormap-1.2.2.css',
         'css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700',
-
         'css/rtl.css',
+
+        
         
     ];
     public $js = [

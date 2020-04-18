@@ -20,3 +20,39 @@ body {
     color: #6c757d;
     content: "/";
 }
+
+.elevation-4 {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+}
+
+.sidebar-dark-primary {
+    background-color: #343a40;
+}
+
+.main-sidebar {
+    z-index: 1100;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.main-sidebar,
+.main-sidebar::before {
+    transition: margin-right .3s ease-in-out, width .3s ease-in-out;
+    width: 250px;
+}
+
+.main-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.content-wrapper,
+.main-footer,
+.main-header {
+    transition: margin-right .3s ease-in-out;
+    margin-right: 250px;
+    margin-left: 0 !important;
+    z-index: 3000;
+}

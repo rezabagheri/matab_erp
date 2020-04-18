@@ -27,40 +27,38 @@ AppAsset::register($this);
 
 <body class="hold-transition sidebar-mini">
     <?php $this->beginBody() ?>
-
-    <!-- <div class="wrap"> -->
     <div class="wrapper">
 
         <?php
-        NavBar::begin([
-            'brandLabel' => Yii::$app->name,
-            'brandUrl' => Yii::$app->homeUrl,
-            'options' => [
-                //'class' => 'navbar-inverse navbar-fixed-top',
-                'class' => 'navbar navbar-expand-md navbar-light bg-primary'
-            ],
+        // NavBar::begin([
+        //     'brandLabel' => Yii::$app->name,
+        //     'brandUrl' => Yii::$app->homeUrl,
+        //     'options' => [
+        //         //'class' => 'navbar-inverse navbar-fixed-top',
+        //         'class' => 'navbar navbar-expand-md navbar-light bg-primary'
+        //     ],
 
-        ]);
-        $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
-        ];
-        if (Yii::$app->user->isGuest) {
-            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-        } else {
-            $menuItems[] = '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline mt-2 mt-md-0'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-success my-2 my-sm-0']
-                )
-                . Html::endForm()
-                . '</li>';
-        }
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav ml-auto'],
-            'items' => $menuItems,
-        ]);
-        NavBar::end();
+        // ]);
+        // $menuItems = [
+        //     ['label' => 'Home', 'url' => ['/site/index']],
+        // ];
+        // if (Yii::$app->user->isGuest) {
+        //     $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        // } else {
+        //     $menuItems[] = '<li>'
+        //         . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline mt-2 mt-md-0'])
+        //         . Html::submitButton(
+        //             'Logout (' . Yii::$app->user->identity->username . ')',
+        //             ['class' => 'btn btn-success my-2 my-sm-0']
+        //         )
+        //         . Html::endForm()
+        //         . '</li>';
+        // }
+        // echo Nav::widget([
+        //     'options' => ['class' => 'navbar-nav ml-auto'],
+        //     'items' => $menuItems,
+        // ]);
+        // NavBar::end();
         ?>
 
 
@@ -113,43 +111,43 @@ AppAsset::register($this);
         $menuAlertItems[] =  [
             'label' => '<i class="fa fa-comments-o"></i>
         <span class="badge badge-danger navbar-badge">3</span>',
-            'url' => '#', 
+            'url' => '#',
             'options' => ['class' => 'nav-item dropdown'],
-             'items' => [
-                 ['label' => 'menu1', 'url'=>'#'],
-                 ['label' => 'menu1', 'url'=>'#'],
-                 ['label' => 'menu1', 'url'=>'#'],
+            'items' => [
+                ['label' => 'menu1', 'url' => '#'],
+                ['label' => 'menu1', 'url' => '#'],
+                ['label' => 'menu1', 'url' => '#'],
 
-             ],
+            ],
         ];
 
         $menuAlertItems[] =  [
             'label' => '<i class="fa fa-bell-o"></i>
         <span class="badge badge-warning navbar-badge">15</span>',
-            'url' => '#', 
+            'url' => '#',
             'options' => ['class' => 'nav-item dropdown'],
-             'items' => [
-                 ['label' => 'menu1', 'url'=>'#'],
-                 ['label' => 'menu1', 'url'=>'#'],
-                 ['label' => 'menu1', 'url'=>'#'],
+            'items' => [
+                ['label' => 'menu1', 'url' => '#'],
+                ['label' => 'menu1', 'url' => '#'],
+                ['label' => 'menu1', 'url' => '#'],
 
-             ],
+            ],
         ];
 
         $menuAlertItems[] =  [
             'label' => '<i class="fa fa-bell-o"></i>
         <span class="badge badge-warning navbar-badge">15</span>',
-            'url' => '#', 
+            'url' => '#',
             'options' => ['class' => 'nav-item dropdown'],
-             'items' => [
-                 ['label' => 'menu1', 'url'=>'#'],
-                 ['label' => 'menu1', 'url'=>'#'],
-                 ['label' => 'menu1', 'url'=>'#'],
+            'items' => [
+                ['label' => 'menu1', 'url' => '#'],
+                ['label' => 'menu1', 'url' => '#'],
+                ['label' => 'menu1', 'url' => '#'],
 
-             ],
+            ],
         ];
 
-        
+
         echo Nav::widget(
             [
                 'options' => ['class' => 'navbar-nav ml-auto'],
@@ -164,24 +162,52 @@ AppAsset::register($this);
 /
 /
 ----------------------------------->
-
-        <div class="container">
-            <?= Breadcrumbs::widget([
-                'itemTemplate' => "\n\t<li class=\"breadcrumb-item\"><i>{link}</i></li>\n", // template for all links
-                'activeItemTemplate' => "\t<li class=\"breadcrumb-item active\">{link}</li>\n", // template for the active link
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            <?= Alert::widget() ?>
-            <?= $content ?>
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="مرکز روانپزشکی دکتر باقری" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">دکتر باقری</span>
+            </a>
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Dashboard v3</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <?= Breadcrumbs::widget([
+                                'itemTemplate' => '<li class="breadcrumb-item"><i>{link}</i></li>', // template for all links
+                                'activeItemTemplate' => '<li class="breadcrumb-item active">{link}</li>', // template for the active link
+                                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            ]) ?>
+                            <!-- <ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard v3</li>
+                            </ol> -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <div class="content">
+                <?= Alert::widget() ?>
+                <?= $content ?>
+            </div>
         </div>
+
     </div>
-
-    <footer class="footer">
-        <div class="container">
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="d-sm-block-down">
+            <strong><?= Yii::powered() ?></strong> All rights reserved.
             <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-            <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
+        <!-- Default to the left -->
+
     </footer>
 
     <?php $this->endBody() ?>
