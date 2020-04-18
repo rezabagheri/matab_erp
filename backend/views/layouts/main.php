@@ -167,8 +167,49 @@ AppAsset::register($this);
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="dist/img/AdminLTELogo.png" alt="مرکز روانپزشکی دکتر باقری" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">دکتر باقری</span>
+                <span class="brand-text font-weight-light"><?= Yii::$app->name ?></span>
             </a>
+            <?php
+            $navItems[] = [
+                'label' => 'Home',
+                'url' => ['site/index'],
+                'linkOptions' => [],
+            ];
+
+            if (Yii::$app->user->isGuest) {
+                $navItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            } else {
+                $navItems[] = ['label' => 'Logout', 'url' => ['/site/loout']];
+            }
+            ?>
+            <?=
+                Nav::widget([
+                    'items' => $navItems,
+                    'options' => ['class' => 'nav nav-pills nav-sidebar flex-column mt-3'],
+                    // 'items' => [
+                    //     [
+                    //         'label' => 'Home',
+                    //         'url' => ['site/index'],
+                    //         'linkOptions' => [],
+                    //     ],
+                    //     [
+                    //         'label' => 'Dropdown',
+                    //         'items' => [
+                    //             ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
+                    //             '<li class="divider"></li>',
+                    //             '<li class="dropdown-header">Dropdown Header</li>',
+                    //             ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+                    //         ],
+                    //     ],
+                    //     [
+                    //         'label' => 'Login',
+                    //         'url' => ['site/login'],
+                    //         'visible' => Yii::$app->user->isGuest
+                    //     ],
+                    // ],
+                    // set this to nav-tab to get tab-styled navigation
+                ]);
+            ?>
         </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
