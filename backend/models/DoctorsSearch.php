@@ -18,7 +18,7 @@ class DoctorsSearch extends Doctors
     {
         return [
             [['did'], 'integer'],
-            [['first_name', 'last_name', 'visitdayes'], 'safe'],
+            [['first_name', 'last_name'], 'safe'],
         ];
     }
 
@@ -62,8 +62,7 @@ class DoctorsSearch extends Doctors
         ]);
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
-            ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'visitdayes', $this->visitdayes]);
+            ->andFilterWhere(['like', 'last_name', $this->last_name]);
 
         return $dataProvider;
     }

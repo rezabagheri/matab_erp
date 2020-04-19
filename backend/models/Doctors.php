@@ -10,7 +10,6 @@ use Yii;
  * @property int $did
  * @property string $first_name
  * @property string $last_name
- * @property string $visitdayes
  *
  * @property Visits[] $visits
  */
@@ -30,8 +29,7 @@ class Doctors extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['first_name', 'last_name', 'visitdayes'], 'required'],
-            [['visitdayes'], 'string'],
+            [['first_name', 'last_name'], 'required'],
             [['first_name'], 'string', 'max' => 25],
             [['last_name'], 'string', 'max' => 35],
         ];
@@ -46,7 +44,6 @@ class Doctors extends \yii\db\ActiveRecord
             'did' => 'Did',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
-            'visitdayes' => 'Visitdayes',
         ];
     }
 

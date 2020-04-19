@@ -7,13 +7,13 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\DoctorsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Doctors';
+$this->title = 'پزشکان';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="doctors-index">
 
     <p>
-        <?= Html::a('Create Doctors', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('پزشک جدید', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -33,11 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'did',
             'first_name',
             'last_name',
-            'visitdayes',
 
             ['class' => 'yii\grid\ActionColumn',
                 'buttons' => [

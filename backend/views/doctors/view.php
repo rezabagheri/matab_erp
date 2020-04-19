@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'did',
             'first_name',
             'last_name',
-            'visitdayes',
         ],
     ]) ?>
 
