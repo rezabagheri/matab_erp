@@ -7,15 +7,13 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\CustommersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Custommers';
+$this->title = 'پرونده‌ی بیماران';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="custommers-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Custommers', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('پرونده‌ی جدید', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -25,10 +23,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        //'layout' => "{summary}{items}<nav>{pager}</nav>",
+        'pager' => [
+            'options' => ['class' => 'pagination justify-content-end'],
+            'linkContainerOptions' => ['class' =>'page-item'],
+            'linkOptions' => ['class' => 'page-link'],
+            'disabledListItemSubTagOptions' => [
+                'tag' => 'a',
+                'class' => 'page-link'
+                ]
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'doc_no',
-            'firts_time_visit',
+            'firts_time_visit:datetime',
             'first_name',
             'last_name',
             //'father_name',
@@ -48,24 +56,25 @@ $this->params['breadcrumbs'][] = $this->title;
             //'referrer',
             //'address:ntext',
 
-            ['class' => 'yii\grid\ActionColumn',
+            [
+                'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
-                    'update' =>  function($url,$model) {
+                    'update' =>  function ($url, $model) {
                         return Html::a('<i class="fa fa-edit"></i>', $url, [
                             'title' => Yii::t('app', 'update')
                         ]);
                     },
-                    'view' =>  function($url,$model) {
+                    'view' =>  function ($url, $model) {
                         return Html::a('<i class="fa fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'view')
                         ]);
                     },
-                    'delete' => function($url,$model) {
+                    'delete' => function ($url, $model) {
                         return Html::a('<i class="fa fa-trash"></i>', $url, [
                             'title' => Yii::t('app', 'delete')
                         ]);
                     }
-                 ]
+                ]
             ],
         ],
     ]); ?>

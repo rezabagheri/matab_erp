@@ -12,8 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="doctors-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Create Doctors', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -24,6 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pager' => [
+            'options' => ['class' => 'pagination justify-content-end'],
+            'linkContainerOptions' => ['class' =>'page-item'],
+            'linkOptions' => ['class' => 'page-link'],
+            'disabledListItemSubTagOptions' => [
+                'tag' => 'a',
+                'class' => 'page-link'
+                ]
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

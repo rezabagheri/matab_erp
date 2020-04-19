@@ -5,6 +5,8 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -175,17 +177,36 @@ AppAsset::register($this);
                 'url' => ['site/index'],
                 'linkOptions' => [],
             ];
+            
+            $navItems[] = [
+                'label' => 'بیماران',
+                'url'   => Url::to(["custommers/index"]),
+                'linkOptions' => []
+            ];
+            $navItems[] = [
+                'label' => 'پزشکان',
+                'url'   => Url::to(["doctors/index"]),
+                'linkOptions' => []
+            ];
+
+            $navItems[] = [
+                'label' => 'ویزیت‌ها',
+                'url'   => Url::to(["visits/index"]),
+                'linkOptions' => []
+            ];
 
             if (Yii::$app->user->isGuest) {
                 $navItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
-                $navItems[] = ['label' => 'Logout', 'url' => ['/site/loout']];
+                $navItems[] = ['label' => 'Logout', 'url' => ['/site/logout']];
             }
             ?>
             <?=
                 Nav::widget([
                     'items' => $navItems,
                     'options' => ['class' => 'nav nav-pills nav-sidebar flex-column mt-3'],
+                    //'activateItems' => true,
+                    'activateParents' => true,
                     // 'items' => [
                     //     [
                     //         'label' => 'Home',
@@ -218,13 +239,14 @@ AppAsset::register($this);
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Dashboard v3</h1>
+                            <h1 class="m-0 text-dark"><?= Html::encode($this->title) ?></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <?= Breadcrumbs::widget([
                                 'itemTemplate' => '<li class="breadcrumb-item"><i>{link}</i></li>', // template for all links
                                 'activeItemTemplate' => '<li class="breadcrumb-item active">{link}</li>', // template for the active link
                                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                'options' => ['class' => 'breadcrumb float-sm-left']
                             ]) ?>
                             <!-- <ol class="breadcrumb float-sm-left">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
