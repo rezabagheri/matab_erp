@@ -17,8 +17,8 @@ class VisitsSearch extends Visits
     public function rules()
     {
         return [
-            [['vid', 'cid', 'doctor', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online'], 'integer'],
-            [['visit_date', 'therapy', 'presenceـinـoffice', 'visit_start', 'visit_end', 'next_visit', 'comment', 'prescription'], 'safe'],
+            [['vid', 'cid', 'did', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online'], 'integer'],
+            [['visit_date', 'therapy', 'presenceـinـoffice', 'visit_start', 'visit_end', 'next_visit', 'comment', 'prescription', 'attach'], 'safe'],
             [['online'], 'boolean'],
         ];
     }
@@ -61,9 +61,9 @@ class VisitsSearch extends Visits
         $query->andFilterWhere([
             'vid' => $this->vid,
             'cid' => $this->cid,
+            'did' => $this->did,
             'visit_date' => $this->visit_date,
             'online' => $this->online,
-            'doctor' => $this->doctor,
             'presenceـinـoffice' => $this->presenceـinـoffice,
             'visit_start' => $this->visit_start,
             'visit_end' => $this->visit_end,
@@ -79,7 +79,8 @@ class VisitsSearch extends Visits
 
         $query->andFilterWhere(['like', 'therapy', $this->therapy])
             ->andFilterWhere(['like', 'comment', $this->comment])
-            ->andFilterWhere(['like', 'prescription', $this->prescription]);
+            ->andFilterWhere(['like', 'prescription', $this->prescription])
+            ->andFilterWhere(['like', 'attach', $this->attach]);
 
         return $dataProvider;
     }

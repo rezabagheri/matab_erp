@@ -22,13 +22,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cid') ?>
 
+    <?= $form->field($model, 'did') ?>
+
     <?= $form->field($model, 'visit_date') ?>
 
     <?= $form->field($model, 'therapy') ?>
 
-    <?= $form->field($model, 'online')->checkbox() ?>
-
-    <?php // echo $form->field($model, 'doctor') ?>
+    <?php // echo $form->field($model, 'online')->checkbox() ?>
 
     <?php // echo $form->field($model, 'presenceـinـoffice') ?>
 
@@ -55,6 +55,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'comment') ?>
 
     <?php // echo $form->field($model, 'prescription') ?>
+
+    <?php // echo $form->field($model, 'attach') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

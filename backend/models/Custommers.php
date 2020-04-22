@@ -66,29 +66,32 @@ class Custommers extends \yii\db\ActiveRecord
     {
         return [
             'cid' => 'Cid',
-            'doc_no' => 'Doc No',
-            'firts_time_visit' => 'Firts Time Visit',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'father_name' => 'Father Name',
-            'gender' => 'Gender',
-            'birth_date' => 'Birth Date',
-            'birth_order' => 'Birth Order',
-            'education_level' => 'Education Level',
-            'major' => 'Major',
-            'maritalـstatus' => 'Maritalـstatus',
-            'child_count' => 'Child Count',
-            'job' => 'Job',
-            'birth_place' => 'Birth Place',
-            'primary_hand' => 'Primary Hand',
-            'mobile_number' => 'Mobile Number',
-            'home_phone' => 'Home Phone',
-            'other_phones' => 'Other Phones',
-            'referrer' => 'Referrer',
+            'doc_no' => 'ش.پ',
+            'firts_time_visit' => 'اولین ویزیت',
+            'first_name' => 'نام',
+            'last_name' => 'نام خانوادگی',
+            'father_name' => 'نام پدر',
+            'gender' => 'جنسیت',
+            'birth_date' => 'تاریخ تولد',
+            'birth_order' => 'ترتیب تولد',
+            'education_level' => 'تحصیلات',
+            'major' => 'رشته‌ی تحصیلی',
+            'maritalـstatus' => 'وضعیت تاهل',
+            'child_count' => 'تعداد فرزندان',
+            'job' => 'شغل',
+            'birth_place' => 'محل تولد',
+            'primary_hand' => 'دست غالب',
+            'mobile_number' => 'موبایل',
+            'home_phone' => 'تلفن منزل',
+            'other_phones' => 'تلفن ضروری',
+            'referrer' => 'معرف',
             'address' => 'Address',
         ];
     }
 
+    
+    
+    
     /**
      * Gets query for [[Visits]].
      *

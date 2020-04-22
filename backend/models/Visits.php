@@ -9,10 +9,10 @@ use Yii;
  *
  * @property int $vid
  * @property int $cid
+ * @property int $did
  * @property string $visit_date
  * @property string $therapy
  * @property bool $online
- * @property int $doctor
  * @property string $presenceـinـoffice
  * @property string $visit_start
  * @property string $visit_end
@@ -26,9 +26,10 @@ use Yii;
  * @property string $next_visit
  * @property string $comment
  * @property string $prescription
+ * @property resource $attach
  *
  * @property Custommers $c
- * @property Doctors $doctor0
+ * @property Doctors $d
  */
 class Visits extends \yii\db\ActiveRecord
 {
@@ -46,14 +47,13 @@ class Visits extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cid', 'visit_date', 'therapy', 'doctor', 'presenceـinـoffice', 'visit_start', 'visit_end', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online', 'next_visit', 'comment', 'prescription'], 'required'],
-            [['cid', 'doctor', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online'], 'integer'],
-            [['visit_date', 'presenceـinـoffice', 'visit_start', 'visit_end', 'next_visit'], 'safe'],
-            [['therapy', 'prescription'], 'string'],
+            [['did','visit_date', 'therapy', 'presenceـinـoffice', 'visit_start', 'visit_end', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online', 'next_visit', 'comment', 'prescription', 'attach'], 'required'],
+            [['cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online'], 'integer'],
+            [['cid', 'did', 'visit_date', 'presenceـinـoffice', 'visit_start', 'visit_end', 'next_visit'], 'safe'],
+            [['therapy', 'comment', 'prescription', 'attach'], 'string'],
             [['online'], 'boolean'],
-            [['comment'], 'string', 'max' => 255],
             [['cid'], 'exist', 'skipOnError' => true, 'targetClass' => Custommers::className(), 'targetAttribute' => ['cid' => 'cid']],
-            [['doctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctors::className(), 'targetAttribute' => ['doctor' => 'did']],
+            [['did'], 'exist', 'skipOnError' => true, 'targetClass' => Doctors::className(), 'targetAttribute' => ['did' => 'did']],
         ];
     }
 
@@ -63,25 +63,27 @@ class Visits extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'vid' => 'Vid',
+            'vid' => 'شماره',
             'cid' => 'Cid',
-            'visit_date' => 'Visit Date',
-            'therapy' => 'Therapy',
-            'online' => 'Online',
-            'doctor' => 'Doctor',
-            'presenceـinـoffice' => 'Presenceـinـoffice',
-            'visit_start' => 'Visit Start',
-            'visit_end' => 'Visit End',
-            'cost' => 'Cost',
+            'did' => 'Did',
+            'visit_date' => 'تاریخ ویزیت',
+            'therapy' => 'درمان',
+            'online' => 'آنلاین؟',
+            'presenceـinـoffice' => 'حظور در مطب',
+            'visit_start' => 'شروع ویزیت',
+            'visit_end' => 'پایان ویزیت',
+            'cost' => 'هزینه',
             'Extra' => 'Extra',
-            'discount' => 'Discount',
-            'sum' => 'Sum',
-            'pay_bt_card' => 'Pay Bt Card',
-            'pay_cash' => 'Pay Cash',
-            'pay_online' => 'Pay Online',
-            'next_visit' => 'Next Visit',
-            'comment' => 'Comment',
-            'prescription' => 'Prescription',
+            'discount' => 'تخفیف',
+            'sum' => 'جمع',
+            'pay_bt_card' => 'پرداخت با کارت',
+            'pay_cash' => 'پرداخت نقدی',
+            'pay_online' => 'پرداخت آنلاین',
+            'next_visit' => 'تاریخ ویزیت بعدی',
+            'comment' => 'شرح حال',
+            'prescription' => 'نسخه',
+            'attach' => 'Attach',
+            'duration' => 'مدت ویزیت'
         ];
     }
 
@@ -90,18 +92,22 @@ class Visits extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getC()
+    public function getCustommer()
     {
         return $this->hasOne(Custommers::className(), ['cid' => 'cid']);
     }
 
     /**
-     * Gets query for [[Doctor0]].
+     * Gets query for [[D]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getDoctor0()
+    public function getDoctor()
     {
-        return $this->hasOne(Doctors::className(), ['did' => 'doctor']);
+        return $this->hasOne(Doctors::className(), ['did' => 'did']);
+    }
+
+    public function getDuration() {
+        return strtotime($this->visit_end)-strtotime($this->visit_start) ;
     }
 }

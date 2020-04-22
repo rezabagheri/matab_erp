@@ -14,13 +14,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cid')->textInput() ?>
 
+    <?= $form->field($model, 'did')->textInput() ?>
+
     <?= $form->field($model, 'visit_date')->textInput() ?>
 
     <?= $form->field($model, 'therapy')->dropDownList([ 'First Time Visit' => 'First Time Visit', 'Second Time Visit' => 'Second Time Visit', 'Visit' => 'Visit', 'Advise' => 'Advise', 'Hypnosis' => 'Hypnosis', 'Addiction' => 'Addiction', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'online')->checkbox() ?>
-
-    <?= $form->field($model, 'doctor')->textInput() ?>
 
     <?= $form->field($model, 'presenceـinـoffice')->textInput() ?>
 
@@ -44,9 +44,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'next_visit')->textInput() ?>
 
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'prescription')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'attach')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

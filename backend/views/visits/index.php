@@ -12,6 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="visits-index">
 
+    <h1><?= Html::encode($this->title) ?></h1>
+
     <p>
         <?= Html::a('Create Visits', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -22,57 +24,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'pager' => [
-            'options' => ['class' => 'pagination justify-content-end'],
-            'linkContainerOptions' => ['class' =>'page-item'],
-            'linkOptions' => ['class' => 'page-link'],
-            'disabledListItemSubTagOptions' => [
-                'tag' => 'a',
-                'class' => 'page-link'
-                ]
-        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'vid',
-            'cid',
-            'visit_date',
+            //'vid',
+            'custommer.doc_no',
+            'custommer.first_name',
+            'custommer.last_name',
+            'doctor.fullName',
+            //'doctor.first_name',
+            //'doctor.last_name',
+            //'cid',
+            //'did',
+            'visit_date:date',
+            'visit_start',
+            'visit_end',
+            'duration:time',
             'therapy',
             'online:boolean',
-            //'doctor',
             //'presenceـinـoffice',
-            //'visit_start',
-            //'visit_end',
-            //'cost',
-            //'Extra',
-            //'discount',
-            //'sum',
+            'cost',
+            'Extra',
+            'discount',
+            'sum',
             //'pay_bt_card',
             //'pay_cash',
             //'pay_online',
             //'next_visit',
-            //'comment',
+            //'comment:ntext',
             //'prescription:ntext',
+            //'attach',
 
-            ['class' => 'yii\grid\ActionColumn',
-                'buttons' => [
-                    'update' =>  function($url,$model) {
-                        return Html::a('<i class="fa fa-edit"></i>', $url, [
-                            'title' => Yii::t('app', 'update')
-                        ]);
-                    },
-                    'view' =>  function($url,$model) {
-                        return Html::a('<i class="fa fa-eye"></i>', $url, [
-                            'title' => Yii::t('app', 'view')
-                        ]);
-                    },
-                    'delete' => function($url,$model) {
-                        return Html::a('<i class="fa fa-trash"></i>', $url, [
-                            'title' => Yii::t('app', 'delete')
-                        ]);
-                    }
-                 ]
-            ],
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

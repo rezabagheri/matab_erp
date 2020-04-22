@@ -42,8 +42,9 @@ class Doctors extends \yii\db\ActiveRecord
     {
         return [
             'did' => 'Did',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
+            'first_name' => 'نام',
+            'last_name' => 'نام خانوادگی',
+            'fullName' => 'نام پزشک',
         ];
     }
 
@@ -55,5 +56,9 @@ class Doctors extends \yii\db\ActiveRecord
     public function getVisits()
     {
         return $this->hasMany(Visits::className(), ['doctor' => 'did']);
+    }
+
+    public function getFullName() {
+        return $this->first_name."، " . $this->last_name;
     }
 }

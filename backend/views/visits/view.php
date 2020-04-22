@@ -31,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'vid',
             'cid',
+            'did',
             'visit_date',
             'therapy',
             'online:boolean',
-            'doctor',
             'presenceـinـoffice',
             'visit_start',
             'visit_end',
@@ -46,8 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'pay_cash',
             'pay_online',
             'next_visit',
-            'comment',
+            'comment:ntext',
             'prescription:ntext',
+            'attach',
         ],
     ]) ?>
 
