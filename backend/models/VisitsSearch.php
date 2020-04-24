@@ -17,8 +17,8 @@ class VisitsSearch extends Visits
     public function rules()
     {
         return [
-            [['vid', 'cid', 'did', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online'], 'integer'],
-            [['visit_date', 'therapy', 'presenceـinـoffice', 'visit_start', 'visit_end', 'next_visit', 'comment', 'prescription', 'attach'], 'safe'],
+            [['vid', 'cid', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online'], 'integer'],
+            [['did', 'visit_date', 'therapy', 'presenceـinـoffice', 'visit_start', 'visit_end', 'next_visit', 'comment', 'prescription', 'attach'], 'safe'],
             [['online'], 'boolean'],
         ];
     }
@@ -41,15 +41,23 @@ class VisitsSearch extends Visits
      */
     public function search($params)
     {
-        $query = Visits::find();
+        //  echo '<pre>';
+        //  print_r($params);
+        //  echo '</pre>';
 
+        $query = Visits::find();
+        //print_r($query);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            //'sort' => ['attribute' => ['fist_name', 'last_name', ]],
         ]);
 
         $this->load($params);
+        
+        $query->joinWith('custommer');
+        $query->joinWith('doctor');
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -57,11 +65,11 @@ class VisitsSearch extends Visits
             return $dataProvider;
         }
 
+ 
         // grid filtering conditions
         $query->andFilterWhere([
             'vid' => $this->vid,
-            'cid' => $this->cid,
-            'did' => $this->did,
+            //'did' => $this->did,
             'visit_date' => $this->visit_date,
             'online' => $this->online,
             'presenceـinـoffice' => $this->presenceـinـoffice,
@@ -80,7 +88,9 @@ class VisitsSearch extends Visits
         $query->andFilterWhere(['like', 'therapy', $this->therapy])
             ->andFilterWhere(['like', 'comment', $this->comment])
             ->andFilterWhere(['like', 'prescription', $this->prescription])
-            ->andFilterWhere(['like', 'attach', $this->attach]);
+            ->andFilterWhere(['like', 'attach', $this->attach])
+            ->andFilterWhere(['like', 'custommers.doc_no', $this->cid])
+            ->andFilterWhere(['like', 'doctors.last_name', $this->did]);
 
         return $dataProvider;
     }

@@ -32,6 +32,7 @@ class Doctors extends \yii\db\ActiveRecord
             [['first_name', 'last_name'], 'required'],
             [['first_name'], 'string', 'max' => 25],
             [['last_name'], 'string', 'max' => 35],
+            [['did'], 'safe'],
         ];
     }
 

@@ -1,7 +1,10 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Doctors;
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Visits */
@@ -14,7 +17,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cid')->textInput() ?>
 
-    <?= $form->field($model, 'did')->textInput() ?>
+    <?= $form->field($model, 'did') ->dropDownList(
+        ArrayHelper::map(Doctors::find()->all(), 'did', 'fullName'),
+        ['prompt'=>'انتخاب پزشک']
+    ); ?>
 
     <?= $form->field($model, 'visit_date')->textInput() ?>
 

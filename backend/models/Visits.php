@@ -47,7 +47,7 @@ class Visits extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['did','visit_date', 'therapy', 'presenceـinـoffice', 'visit_start', 'visit_end', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online', 'next_visit', 'comment', 'prescription', 'attach'], 'required'],
+            [['visit_date', 'therapy', 'presenceـinـoffice', 'visit_start', 'visit_end', 'cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online', 'next_visit', 'comment', 'prescription', 'attach'], 'required'],
             [['cost', 'Extra', 'discount', 'sum', 'pay_bt_card', 'pay_cash', 'pay_online'], 'integer'],
             [['cid', 'did', 'visit_date', 'presenceـinـoffice', 'visit_start', 'visit_end', 'next_visit'], 'safe'],
             [['therapy', 'comment', 'prescription', 'attach'], 'string'],
@@ -65,7 +65,7 @@ class Visits extends \yii\db\ActiveRecord
         return [
             'vid' => 'شماره',
             'cid' => 'Cid',
-            'did' => 'Did',
+            'did' => 'پزشک',
             'visit_date' => 'تاریخ ویزیت',
             'therapy' => 'درمان',
             'online' => 'آنلاین؟',
@@ -109,5 +109,10 @@ class Visits extends \yii\db\ActiveRecord
 
     public function getDuration() {
         return strtotime($this->visit_end)-strtotime($this->visit_start) ;
+    }
+
+    public function getCustommerFirstName() {
+        //return $this->hasOne(Doctors::className(), ['did' => 'did']);
+        //return $this->getCustommer()->first_name;
     }
 }

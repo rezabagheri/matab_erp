@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\VisitsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Visits';
+$this->title = 'ویزیت‌ها';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="visits-index">
@@ -19,7 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -27,10 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'vid',
-            'custommer.doc_no',
+            [
+                'headerOptions' => ['style' => 'max-width: 70px'],
+                'attribute' => 'cid',
+                'value' => 'custommer.doc_no',
+                'label' => 'ش.پ',
+                
+            ],
+            
             'custommer.first_name',
             'custommer.last_name',
-            'doctor.fullName',
+            [
+                'attribute' => 'did',
+                'value' => 'doctor.fullName',
+                
+            ],
+            //'doctor.fullName',
             //'doctor.first_name',
             //'doctor.last_name',
             //'cid',
@@ -42,10 +55,26 @@ $this->params['breadcrumbs'][] = $this->title;
             'therapy',
             'online:boolean',
             //'presenceـinـoffice',
-            'cost',
-            'Extra',
-            'discount',
-            'sum',
+            [
+                'attribute' => 'cost',
+                'value' => 'cost',
+                'format' => 'currency',
+            ],
+            [
+                'attribute' => 'Extra',
+                'value' => 'Extra',
+                'format' => 'currency',
+            ],   
+             [
+                'attribute' => 'discount',
+                'value' => 'discount',
+                'format' => 'currency',
+            ],
+            [
+                'attribute' => 'sum',
+                'value' => 'sum',
+                'format' => 'currency',
+            ],
             //'pay_bt_card',
             //'pay_cash',
             //'pay_online',
@@ -54,7 +83,26 @@ $this->params['breadcrumbs'][] = $this->title;
             //'prescription:ntext',
             //'attach',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'update' =>  function ($url, $model) {
+                        return Html::a('<i class="fa fa-edit"></i>', $url, [
+                            'title' => Yii::t('app', 'update')
+                        ]);
+                    },
+                    'view' =>  function ($url, $model) {
+                        return Html::a('<i class="fa fa-eye"></i>', $url, [
+                            'title' => Yii::t('app', 'view')
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<i class="fa fa-trash"></i>', $url, [
+                            'title' => Yii::t('app', 'delete')
+                        ]);
+                    }
+                ]
+            ],
         ],
     ]); ?>
 
